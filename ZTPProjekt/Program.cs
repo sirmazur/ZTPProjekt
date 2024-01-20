@@ -19,7 +19,7 @@ string[] polishTranslations = new string[]
             "Harmonia", "Światlo gwiazd", "Rower", "Biblioteka", "Motyl",
             "Tajemnica", "Parasol", "Ocean", "Smiech", "Flet",
             "Spokoj", "Czar", "Przyjazn", "Iskra", "Tecza",
-            "Symfonia", "Galaktyka", "Ołowek", "Spokoj", "Eksploracja"
+            "Symfonia", "Galaktyka", "Olowek", "Spokoj", "Eksploracja"
 };
 string[] germanTranslations = new string[]
         {
@@ -43,11 +43,14 @@ for (int i = 0; i < 30; i++)
 var app = new App();
 List<Option> options = new List<Option>();
 options.Add(new Option(FiggleFonts.Slant.Render("Add word to vocabulary"), () => Task.Run(() => { {
+        Console.Clear();
         Console.WriteLine(FiggleFonts.Slant.Render("Language:"));
         var lang = Console.ReadLine();
         var languageConnection = Vocabulary.GetConnection(lang);
+        Console.Clear();
         Console.WriteLine(FiggleFonts.Slant.Render("Polish Word:"));
         var polishWord = Console.ReadLine();
+        Console.Clear();
         Console.WriteLine(FiggleFonts.Slant.Render("Foreign Word:"));
         var foreignWord = Console.ReadLine();
         languageConnection.Set(polishWord, foreignWord);
