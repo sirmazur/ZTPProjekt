@@ -13,7 +13,7 @@ namespace ZTPProjekt.Models
         public override List<string> GetList(int amount)
         {
             var words = base.GetList(amount);
-            for (int i = words.Count()-1; i <= 0; i--)
+            for (int i = words.Count()-1; i >= 0; i--)
             {
                 if (i>2 && i%2==1)
                 {

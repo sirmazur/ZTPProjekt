@@ -14,12 +14,12 @@ string[] englishWords = new string[]
         };
 string[] polishTranslations = new string[]
 {
-            "Jabłko", "Banan", "Komputer", "Słoń", "Światło słoneczne",
-            "Wszechświat", "Góra", "Szczęście", "Czekolada", "Przygoda",
-            "Harmonia", "Światło gwiazd", "Rower", "Biblioteka", "Motyl",
-            "Tajemnica", "Parasol", "Ocean", "Śmiech", "Flet",
-            "Spokój", "Czar", "Przyjaźń", "Iskra", "Tęcza",
-            "Symfonia", "Galaktyka", "Ołówek", "Spokój", "Eksploracja"
+            "Jablko", "Banan", "Komputer", "Slon", "Swiatlo sloneczne",
+            "Wszechswiat", "Gora", "Szczescie", "Czekolada", "Przygoda",
+            "Harmonia", "Światlo gwiazd", "Rower", "Biblioteka", "Motyl",
+            "Tajemnica", "Parasol", "Ocean", "Smiech", "Flet",
+            "Spokoj", "Czar", "Przyjazn", "Iskra", "Tecza",
+            "Symfonia", "Galaktyka", "Ołowek", "Spokoj", "Eksploracja"
 };
 string[] germanTranslations = new string[]
         {
@@ -42,18 +42,18 @@ for (int i = 0; i < 30; i++)
 
 var app = new App();
 List<Option> options = new List<Option>();
-options.Add(new Option("Add word to vocabulary", () => Task.Run(() => { {
-        Console.WriteLine(FiggleFonts.Ogre.Render("Language:"));
+options.Add(new Option(FiggleFonts.Slant.Render("Add word to vocabulary"), () => Task.Run(() => { {
+        Console.WriteLine(FiggleFonts.Slant.Render("Language:"));
         var lang = Console.ReadLine();
         var languageConnection = Vocabulary.GetConnection(lang);
-        Console.WriteLine(FiggleFonts.Ogre.Render("Polish Word:"));
+        Console.WriteLine(FiggleFonts.Slant.Render("Polish Word:"));
         var polishWord = Console.ReadLine();
-        Console.WriteLine(FiggleFonts.Ogre.Render("Foreign Word:"));
+        Console.WriteLine(FiggleFonts.Slant.Render("Foreign Word:"));
         var foreignWord = Console.ReadLine();
         languageConnection.Set(polishWord, foreignWord);
     } })));
-options.Add(new Option("Run App", app.RunAsync));
-options.Add(new Option("Exit",() => Task.CompletedTask));
+options.Add(new Option(FiggleFonts.Slant.Render("Run App"), app.RunAsync));
+options.Add(new Option(FiggleFonts.Slant.Render("Exit"),() => Task.CompletedTask));
 await MenuBuilder.CreateMenu(options);
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Figgle;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,35 +29,39 @@ namespace ZTPProjekt.Models
             var iterator = set.CreateIterator();
             if (difficulty==Difficulty.Master)
             {
-                Console.WriteLine(iterator.CurrentQuestion().WordAnswer.WordQuestion+":");
+                Console.WriteLine(FiggleFonts.Slant.Render(iterator.CurrentQuestion().WordAnswer.WordQuestion+":"));
                 var answer = Console.ReadLine();
                 var correct = iterator.CurrentQuestion().WordAnswer.WordCorrectness[0].Item1;
                 if (answer == correct)
                 {
                     correctAnswers++;
-                    Console.WriteLine("Correct!");
+                    Console.Clear();
+                    Console.WriteLine(FiggleFonts.Slant.Render("Correct!"));
                     Thread.Sleep(1000);
                 }
                 else
                 {
-                    Console.WriteLine("Wrong!");
+                    Console.Clear();
+                    Console.WriteLine(FiggleFonts.Slant.Render("Wrong!"));
                     Thread.Sleep(1000);
                 }
                 while (iterator.HasNext())
                 {
                     Console.Clear();
                     var question = iterator.Next();
-                    Console.WriteLine(question.WordAnswer.WordQuestion+":");
+                    Console.WriteLine(FiggleFonts.Slant.Render(question.WordAnswer.WordQuestion+":"));
                     answer = Console.ReadLine();
                     if (answer == iterator.CurrentQuestion().WordAnswer.WordCorrectness[0].Item1)
                     {
                         correctAnswers++;
-                        Console.WriteLine("Correct!");
+                        Console.Clear();
+                        Console.WriteLine(FiggleFonts.Slant.Render("Correct!"));
                         Thread.Sleep(1000);
                     }
                     else
                     {
-                        Console.WriteLine("Wrong!");
+                        Console.Clear();
+                        Console.WriteLine(FiggleFonts.Slant.Render("Wrong!"));
                         Thread.Sleep(1000);
                     }
                 }
@@ -67,16 +72,18 @@ namespace ZTPProjekt.Models
                 var wordAnswer = iterator.CurrentQuestion().WordAnswer;
                 foreach (var answer in ListShuffler.Shuffle<(string,bool)>(wordAnswer.WordCorrectness))
                 {
-                    options.Add(new Option(wordAnswer.WordQuestion+"=>"+answer.Item1, () => Task.Run(async () => {
+                    options.Add(new Option(FiggleFonts.Slant.Render(wordAnswer.WordQuestion+" => "+answer.Item1), () => Task.Run(async () => {
                         if (answer.Item2 is true)
                         {
                             correctAnswers++;
-                            Console.WriteLine("Correct!");
+                            Console.Clear();
+                            Console.WriteLine(FiggleFonts.Slant.Render("Correct!"));
                             Thread.Sleep(1000);
                         }
                         else
                         {
-                            Console.WriteLine("Wrong!");
+                            Console.Clear();
+                            Console.WriteLine(FiggleFonts.Slant.Render("Wrong!"));
                             Thread.Sleep(1000);
                         }
                     })));
@@ -88,16 +95,18 @@ namespace ZTPProjekt.Models
                     wordAnswer = iterator.Next().WordAnswer;
                     foreach (var answer in ListShuffler.Shuffle<(string, bool)>(wordAnswer.WordCorrectness))
                     {
-                        options.Add(new Option(wordAnswer.WordQuestion+"=>"+answer.Item1,async () =>await Task.Run(async () => {
+                        options.Add(new Option(FiggleFonts.Slant.Render(wordAnswer.WordQuestion+" => "+answer.Item1),async () =>await Task.Run(async () => {
                             if (answer.Item2 is true)
                             {
                                 correctAnswers++;
-                                Console.WriteLine("Correct!");
+                                Console.Clear();
+                                Console.WriteLine(FiggleFonts.Slant.Render("Correct!"));
                                 await Task.Delay(1000);
                             }
                             else
                             {
-                                Console.WriteLine("Wrong!");
+                                Console.Clear();
+                                Console.WriteLine(FiggleFonts.Slant.Render("Wrong!"));
                                 await Task.Delay(1000);
                             }
                         })));
@@ -105,7 +114,8 @@ namespace ZTPProjekt.Models
                     await MenuBuilder.CreateSingularMenu(options);
                 }
             }
-            Console.WriteLine("Your result: "+correctAnswers+"/10");
+            Console.Clear();
+            Console.WriteLine(FiggleFonts.Slant.Render("Your result: "+correctAnswers+"/10"));
             Thread.Sleep(5000);
         }
 

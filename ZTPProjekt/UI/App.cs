@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Figgle;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,9 @@ namespace ZTPProjekt.UI
             List<Option> options = new List<Option>();
             foreach (var language in languages)
             {
-                options.Add(new Option(language, async () => await MenuForLanguage(language)));
+                options.Add(new Option(FiggleFonts.Slant.Render(language), async () => await MenuForLanguage(language)));
             }
-            options.Add(new Option("Back", () => Task.CompletedTask));
+            options.Add(new Option(FiggleFonts.Slant.Render("Back"), () => Task.CompletedTask));
             await MenuBuilder.CreateMenu(options);
         }
 
@@ -33,9 +34,9 @@ namespace ZTPProjekt.UI
         {
             List<Option> options = new List<Option>()
             {
-                new Option("Study", async () => await StudyForLanguage(language)),
-                new Option("Test", async () => await TestForLanguage(language)),
-                new Option("Back", () => Task.CompletedTask)
+                new Option(FiggleFonts.Slant.Render("Study"), async () => await StudyForLanguage(language)),
+                new Option(FiggleFonts.Slant.Render("Test"), async () => await TestForLanguage(language)),
+                new Option(FiggleFonts.Slant.Render("Back"), () => Task.CompletedTask)
             };
             await MenuBuilder.CreateMenu(options);
         }
@@ -45,8 +46,8 @@ namespace ZTPProjekt.UI
             Console.Clear();
             List<Option> options = new List<Option>()
             {
-                new Option("FromPolish", () => Task.Run(()=>studyMode.Run(true,language,Difficulty.None))),
-                new Option("ToPolish", () => Task.Run(()=>studyMode.Run(false,language,Difficulty.None))),               
+                new Option(FiggleFonts.Slant.Render("FromPolish"), () => Task.Run(()=>studyMode.Run(true,language,Difficulty.None))),
+                new Option(FiggleFonts.Slant.Render("ToPolish"), () => Task.Run(()=>studyMode.Run(false,language,Difficulty.None))),               
             };
             await MenuBuilder.CreateSingularMenu(options);
         }
@@ -61,12 +62,12 @@ namespace ZTPProjekt.UI
                 skill = study.GetLanguageProgress(language);
             }
             List<Option> options = new List<Option>();
-            options.Add(new Option("Skill based difficulty", async () => await RunTest(language, DifficultyCalculator.GetDifficulty(skill))));
+            options.Add(new Option(FiggleFonts.Slant.Render("Skill based difficulty"), async () => await RunTest(language, DifficultyCalculator.GetDifficulty(skill))));
             foreach(var difficulty in Enum.GetValues(typeof(Difficulty)))
             {
                 if(difficulty is not Difficulty.None)
                 {
-                    options.Add(new Option(difficulty.ToString(), async () => await RunTest(language, (Difficulty)difficulty)));
+                    options.Add(new Option(FiggleFonts.Slant.Render(difficulty.ToString()), async () => await RunTest(language, (Difficulty)difficulty)));
                 }
             }
             await MenuBuilder.CreateSingularMenu(options);
@@ -76,8 +77,8 @@ namespace ZTPProjekt.UI
         {
             List<Option> options2 = new List<Option>()
                 {
-                    new Option("FromPolish", async () => await testMode.Run(true,language,diff)),
-                    new Option("ToPolish", () => Task.Run(()=>testMode.Run(false,language,diff)))
+                    new Option(FiggleFonts.Slant.Render("FromPolish"), async () => await testMode.Run(true,language,diff)),
+                    new Option(FiggleFonts.Slant.Render("ToPolish"), () => Task.Run(()=>testMode.Run(false,language,diff)))
                 };
             await MenuBuilder.CreateSingularMenu(options2);
         }
