@@ -16,7 +16,7 @@ string[] polishTranslations = new string[]
 {
             "Jablko", "Banan", "Komputer", "Slon", "Swiatlo sloneczne",
             "Wszechswiat", "Gora", "Szczescie", "Czekolada", "Przygoda",
-            "Harmonia", "Światlo gwiazd", "Rower", "Biblioteka", "Motyl",
+            "Harmonia", "Swiatlo gwiazd", "Rower", "Biblioteka", "Motyl",
             "Tajemnica", "Parasol", "Ocean", "Smiech", "Flet",
             "Spokoj", "Czar", "Przyjazn", "Iskra", "Tecza",
             "Symfonia", "Galaktyka", "Olowek", "Spokoj", "Eksploracja"
