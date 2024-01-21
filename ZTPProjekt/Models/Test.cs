@@ -10,7 +10,6 @@ namespace ZTPProjekt.Models
 {
     public class Test : IMode
     {
-        private List<Question> questions = new List<Question>();
         private int correctAnswers = 0;
         public async Task Run(bool fromPolish, string language, Difficulty difficulty)
         {
