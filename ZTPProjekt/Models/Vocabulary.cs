@@ -25,7 +25,7 @@ namespace ZTPProjekt.Models
             }
             return Connection.getInstance(language);
         }
-        internal class Connection : AbstractConnection, IConnection
+        internal class Connection : IConnection
         {
             private static List<IConnection> Connections = new List<IConnection>();
             public string Language {  get;}
@@ -65,7 +65,7 @@ namespace ZTPProjekt.Models
                 return randomWord;
             }
 
-            public override List<string> GetList(int amount)
+            public List<string> GetList(int amount)
             {              
                 var words = _instance.Words.Where(w => w.Language==Language).ToList();
                 if (amount>words.Count())
